@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace命名空间，唯一标识。一般指定为自定义的接口文件，下面相当于这个接口的实现类 -->
+<mapper namespace="com.yiwutong.mapper.UserMapper">
+     <!--引入自定义缓存类实现cache接口 -->
+    <!--<cache type="com.duogesi.cache.RedisCache"/>-->
+    <!-- 定义结果集，column表示sql查询列,property表示映射到实体的属性 -->
+    <resultMap type="com.yiwutong.entities.User" id="my" >
+        <id column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+        <result column="type" property="type"/>
+    </resultMap>
+    <!-- resultMap指定使用上面定义的结果集,查询使用关联查询，查询列要和上面的column对应 -->
+    <resultMap id="address" type="com.yiwutong.entities.company.subscriber_address">
+        <id column="id" property="id"/>
+        <result column="openid" property="openid"/>
+        <result column="phone" property="phone"/>
+        <result column="name" property="name"/>
+        <result column="email" property="email"/>
+        <result column="address" property="address"/>
+    </resultMap>
+
+          <select id="get_user"  resultMap="my">
+                   select * from user_info
+                   where username=#{username} and password=#{password} and type=3
+           </select>
+
+    <!--获取发件人邮箱-->
+    <select id="get_emial" resultMap="address">
+                select *
+                from fba.subscriber_address
+                where id=#{id};
+            </select>
+    
+    <update id="reset_password">
+        update user_info set password=#{password} where id=#{user_id}
+    </update>
+</mapper>

@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace命名空间，唯一标识。一般指定为自定义的接口文件，下面相当于这个接口的实现类 -->
+<mapper namespace="com.yiwutong.mapper.chehangMapper">
+    <resultMap id="result" type="com.yiwutong.entities.chehang.order">
+        <id property="id" column="id"></id>
+        <result column="numbers" property="numbers"></result>
+        <result column="status" property="status"></result>
+        <result column="address_id" property="address_id"></result>
+        <result column="company_address" property="company_address"></result>
+        <result column="picking" property="picking"></result>
+        <result column="user_id" property="user_id"></result>
+        <result column="dest" property="dest"></result>
+        <result column="driver_id" property="driver_id"></result>
+        <result column="car_id" property="car_id"></result>
+        <result column="additional_id" property="additional_id"></result>
+        <result column="songhuo" property="songhuo"></result>
+        <association property="subscriber_address"  javaType="com.yiwutong.entities.company.subscriber_address">
+            <id column="id" property="id"/>
+            <result column="openid" property="openid"/>
+            <result column="phone" property="phone"/>
+            <result column="address" property="address"/>
+            <result column="name" property="name"/>
+            <result column="email" property="email"/>
+        </association>
+        <association property="car" javaType="com.yiwutong.entities.chehang.car">
+            <id property="id" column="id"></id>
+            <result column="car_number" property="car_number"></result>
+            <result column="user_id" property="user_id"></result>
+        </association>
+        <association property="order_details" javaType="com.yiwutong.entities.chehang.order_details">
+            <id column="id" property="id"/>
+            <result column="ctn" property="ctn"/>
+            <result column="volume" property="volume"/>
+            <result column="weight" property="weight"/>
+            <result column="beizhu" property="beizhu"/>
+            <result column="ups" property="ups"/>
+            <result column="chaigui" property="chaigui"/>
+            <result column="category" property="category"/>
+        </association>
+        <association property="driver" javaType="com.yiwutong.entities.chehang.driver">
+            <id property="id" column="id"></id>
+            <result column="phone" property="phone"></result>
+            <result column="user_id" property="user_id"></result>
+            <result column="id_card" property="id_card"></result>
+            <result column="name" property="name"></result>
+        </association>
+        <association property="amount" javaType="com.yiwutong.entities.amount">
+            <id column="amount_id" property="id"/>
+            <result column="order_id" property="order_id"/>
+            <result column="paid" property="paid"/>
+            <result column="total" property="total"/>
+            <result column="item_id" property="item_id"/>
+            <result column="tax" property="tax"/>
+            <result column="customer" property="customer"/>
+            <result column="inspect" property="inspect"/>
+            <result column="openid" property="openid"/>
+            <result column="additional" property="additional"/>
+        </association>
+        <association property="ship" javaType="com.yiwutong.entities.huodai.Ship">
+            <id column="id" property="id"/>
+            <result column="qiyungang" property="qiyungang"/>
+            <result column="mudigang" property="mudigang"/>
+            <result column="etd" property="etd"/>
+            <result column="method" property="method"/>
+            <result column="eta" property="eta"/>
+            <result property="status" column="status"></result>
+            <result column="desc" property="desc"/>
+            <result column="shichang" property="shichang"/>
+            <result column="user_id" property="user_id"/>
+            <result column="number" property="number"/>
+        </association>
+
+    </resultMap>
+
+    <!--    根据获取全部订单-->
+    <select id="get_zhangdan" resultMap="result">
+        select a.*,o.dest,o.status,d.category,d.ctn,d.volume,d.weight,s.qiyungang,o.numbers,s.etd,s.method,s.user_id
+        from amount as a,orders as o,ship_schdule as s,orders_details as d
+        where a.order_id=o.id and o.id =d.order_id and s.id=o.item_id
+        <if test="method!=null">
+            and s.method=#{method} limit #{currIndex},#{pageSize}
+        </if>
+        <if test="numbers!=null">
+            and o.numbers=#{numbers} limit #{currIndex},#{pageSize}
+        </if>
+
+    </select>
+
+<!--    删除车行订单-->
+    <delete id="delete_order">
+        delete from orders where numbers=#{numbers}
+    </delete>
+
+    <!--更新确认后的数据-->
+    <update id="updata_data_confirmed">
+        update orders_details set ctn=#{ctn} and volume=#{volume} and weight=#{weight}
+        where order_id=(select id from orders where numbers=#{number})
+    </update>
+
+    <!--接单前确认结果-->
+   <select id="before_update" resultType="int">
+      select status from orders where id=#{id}
+   </select>
+    <!--接单-->
+   <update id="update_order">
+      update orders set status =1 ,driver_id=#{driver_id},car_id=#{car_id} where id=#{id}
+   </update>
+    <!--获取未完成的订单-->
+    <select id="get_orders_uncompleted" resultMap="result">
+      select  o.id,o.numbers,f.ctn,f.volume,f.weight,o.status,f.beizhu,d.name,c.car_number,a.address,o.picking,o.songhuo,q.phone
+      from fba.orders as o,fba.subscriber_address as a,fba.driver_info as d,fba.car_info as c,fba.ship_schdule as s,fba.orders_details as f,subscriber_address as q
+      where o.address_id=a.id and o.status=1 and s.user_id=#{user_id}  and o.driver_id=d.id and c.id=o.car_id and s.id=o.item_id and o.address_id=q.id and f.order_id=o.id order by o.id
+   </select>
+
+    <!--//    车行全部页面ID查找-->
+  <select id="get_by_id" resultMap="result">
+      select o.id,o.numbers,f.ctn,f.volume,f.weight,f.beizhu,o.status,a.address,c.car_number,d.name,o.picking,o.songhuo
+      from orders as o,subscriber_address as a,car_info as c,driver_info as d,fba.ship_schdule as s,fba.orders_details as f
+      where o.address_id=a.id and o.numbers=#{numbers} and s.user_id=#{user_id} and s.id=o.item_id and (o.status=0 or o.status=1 or o.status=2) and f.order_id=o.id
+  </select>
+
+    <!--//    车行获取所有待处理订单-->
+    <select id="get_order_all" resultMap="result">
+       select o.id
+      from fba.orders as o,fba.orders_details as f,fba.ship_schdule as s,fba.subscriber_address as a
+      where o.status=0 and s.id=o.item_id and s.user_id=#{user_id} and f.order_id=o.id and o.address_id=a.id
+   </select>
+    <!--//    车行获取所有待处理订单-->
+    <select id="get_orders" resultMap="result" >
+      select o.id,o.address_id,o.numbers,f.ctn,f.volume,f.weight,o.status,f.beizhu,o.picking,o.songhuo,a.address
+      from fba.orders as o,fba.ship_schdule as s,fba.orders_details as f,fba.subscriber_address as a
+      where  o.status=0 and s.id=o.item_id and s.user_id=#{user_id} and f.order_id=o.id and o.address_id=a.id  order by o.id limit #{currIndex} , #{pageSize}
+   </select>
+
+    <!--获取用户的所有的订单-->
+    <select id="get_all_mission" resultMap="result" parameterType="int">
+      select o.id,o.numbers,f.ctn,f.volume,f.weight,o.status,f.beizhu,o.picking,o.songhuo,d.name,c.car_number
+      from   fba.orders as o,fba.ship_schdule as s,fba.orders_details as f,fba.driver_info as d,fba.car_info as c
+      where    s.id=o.item_id and s.user_id=#{user_id} and f.order_id=o.id and d.id=o.driver_id and c.id=o.car_id order by o.id  limit #{currIndex} , #{pageSize}
+   </select>
+
+    <!--获取用户的所有的订单2-->
+    <select id="get_all_mission2" resultMap="result" parameterType="int">
+      select o.id
+      from   fba.orders as o,fba.ship_schdule as s,fba.orders_details as f,fba.driver_info as d,fba.car_info as c
+      where  s.id=o.item_id and s.user_id=#{user_id} and f.order_id=o.id and d.id=o.driver_id and c.id=o.car_id order by o.id
+   </select>
+
+    <!--获取order的item_id对应的address_Id-->
+    <select id="get_address_id" resultMap="result">
+      select  o.address_id,o.id,o.status,o.numbers,d.ups
+       from fba.orders as o,fba.orders_details as d,fba.ship_schdule as s
+       where o.item_id =s.id and s.number=#{number} and d.order_id=o.id group by id
+   </select>
+
+    <!--接单前确认是否有10票-->
+    <select id="get_userid" resultMap="result">
+      select *
+      from orders
+      where user_id=#{user_id} and status=1
+   </select>
+    <!--更新数据-->
+    <update id="update_change">
+        update orders_details as o
+        set o.change=1
+        where o.order_id =#{order_id}
+    </update>
+    <!--判断是否更新过数据-->
+    <select id="get_change" resultType="int">
+        select o.change
+        from orders_details as o
+        where o.order_id=#{order_id}
+    </select>
+    <!--判断方法-->
+    <select id="get_method" resultType="String">
+        select s.method
+        from ship_schdule as s
+        where s.id=#{id}
+    </select>
+
+<!--    更新数据后，海卡需要知道目的港-->
+    <select id="get_mudigang_haika" resultMap="result">
+        select dest
+        from orders
+        where id=#{id}
+    </select>
+    <!--更新数据后,需要知道拆贵港-->
+    <select id="get_chaigui_addition" resultMap="result">
+        select d.chaigui,d.category
+        from orders as o,orders_details as d
+        where o.id=#{id} and o.id=d.order_id
+    </select>
+
+
+</mapper>

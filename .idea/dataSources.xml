@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="fba@localhost" uuid="0168333f-acb4-4ad3-bbaa-f7b78f97b5f9">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/fba</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="fba@yikuajing.cn" uuid="3ab36d45-7887-43e4-9941-c552a0e39992">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://yikuajing.cn:3306/fba</jdbc-url>
+    </data-source>
+  </component>
+</project>
