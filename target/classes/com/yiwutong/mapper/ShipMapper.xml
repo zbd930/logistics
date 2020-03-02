@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace命名空间，唯一标识。一般指定为自定义的接口文件，下面相当于这个接口的实现类 -->
+<mapper namespace="com.yiwutong.mapper.ShipMapper">
+    <resultMap type="com.yiwutong.entities.huodai.Ship" id="items" >
+        <id column="id" property="id"/>
+        <result column="qiyungang" property="qiyungang"/>
+        <result column="mudigang" property="mudigang"/>
+        <result column="etd" property="etd"/>
+        <result column="method" property="method"/>
+        <result column="eta" property="eta"/>
+        <result property="status" column="status"></result>
+        <result column="desc" property="desc"/>
+        <result column="shichang" property="shichang"/>
+        <result column="user_id" property="user_id"/>
+        <result column="number" property="number"/>
+        <association property="details" javaType="com.yiwutong.entities.huodai.details">
+            <id property="id" column="id"></id>
+            <result property="ship_id" column="ship_id"></result>
+            <result property="weight" column="weight"></result>
+            <result property="volume" column="volume"></result>
+            <result property="cut_time" column="cut_time"></result>
+            <result property="cut_end" column="cut_end"></result>
+            <result property="price" column="price"></result>
+            <result property="compensate" column="compensate"></result>
+            <result property="dead_date" column="dead_date"></result>
+            <result property="money" column="money"></result>
+        </association>
+    </resultMap>
+    <resultMap id="details" type="com.yiwutong.entities.huodai.details">
+        <id property="id" column="id"></id>
+        <result property="ship_id" column="ship_id"></result>
+        <result property="weight" column="weight"></result>
+        <result property="volume" column="volume"></result>
+        <result property="dest" column="dest"></result>
+        <result property="cut_time" column="cut_time"></result>
+        <result property="cut_end" column="cut_end"></result>
+        <result property="price" column="price"></result>
+        <result property="compensate" column="compensate"></result>
+        <result property="dead_date" column="dead_date"></result>
+        <result property="money" column="money"></result>
+    </resultMap>
+    <resultMap id="result" type="com.yiwutong.entities.chehang.order">
+        <id property="id" column="id"></id>
+        <result column="numbers" property="numbers"></result>
+        <result column="status" property="status"></result>
+        <result column="address_id" property="address_id"></result>
+        <result column="company_address" property="company_address"></result>
+        <result column="picking" property="picking"></result>
+        <result column="user_id" property="user_id"></result>
+        <result column="item_id" property="item_id"></result>
+        <result column="driver_id" property="driver_id"></result>
+        <result property="dest" column="dest"></result>
+        <result column="car_id" property="car_id"></result>
+        <association property="subscriber_address"  javaType="com.yiwutong.entities.company.subscriber_address">
+            <id column="id" property="id"/>
+            <result column="openid" property="openid"/>
+            <result column="phone" property="phone"/>
+            <result column="address" property="address"/>
+            <result column="name" property="name"/>
+            <result column="email" property="email"/>
+        </association>
+        <association property="order_details" javaType="com.yiwutong.entities.chehang.order_details">
+            <id column="id" property="id"/>
+            <result column="ctn" property="ctn"/>
+            <result column="volume" property="volume"/>
+            <result column="weight" property="weight"/>
+            <result column="beizhu" property="beizhu"/>
+            <result column="ups" property="ups"/>
+            <result column="category" property="category"/>
+        </association>
+        <association property="car" javaType="com.yiwutong.entities.chehang.car">
+            <id property="id" column="id"></id>
+            <result column="car_number" property="car_number"></result>
+            <result column="user_id" property="user_id"></result>
+        </association>
+        <association property="driver" javaType="com.yiwutong.entities.chehang.driver">
+            <id property="id" column="id"></id>
+            <result column="phone" property="phone"></result>
+            <result column="user_id" property="user_id"></result>
+            <result column="id_card" property="id_card"></result>
+            <result column="name" property="name"></result>
+        </association>
+        <association property="ship" javaType="com.yiwutong.entities.huodai.Ship">
+            <id column="id" property="id"/>
+            <result column="qiyungang" property="qiyungang"/>
+            <result column="mudigang" property="mudigang"/>
+            <result column="etd" property="etd"/>
+            <result column="method" property="method"/>
+            <result column="eta" property="eta"/>
+            <result property="status" column="status"></result>
+            <result column="desc" property="desc"/>
+            <result column="shichang" property="shichang"/>
+            <result column="user_id" property="user_id"/>
+            <result column="number" property="number"/>
+        </association>
+    </resultMap>
+
+    <!--    更新确认后的数据-->
+    <select id="get_itemid_userid_id" resultMap="result">
+        select o.id,o.item_id,s.user_id
+        from orders as o,ship_schdule as s
+        where o.item_id=s.id and o.numbers=#{number}
+    </select>
+
+    <select id="get_order" resultMap="items">
+        select *,d.compensate
+        from ship_schdule as s,fba.schdule_details as d
+        where d.ship_id=s.id
+        <if test="start!=null and end!=null">
+           and  s.etd>=#{start} and #{end}>=s.etd
+        </if>
+        <if test="number!=null">
+            and    s.number=#{number}
+        </if>
+        <if test="user_id!=0">
+            and   s.user_id=#{user_id}
+        </if>
+
+    </select>
+
+    <!--从redis取出数据更新到数据库-->
+    <update id="update_data_byid" parameterType="com.yiwutong.entities.chehang.order_details">
+        update orders_details set ctn=#{ctn},weight=#{weight},volume=#{volume} where order_id=#{order_id}
+    </update>
+
+
+    <select id="get_dadetails" resultMap="details">
+        select *
+        from schdule_details
+        where ship_id=#{ship_id}
+    </select>
+
+    <!--获取schdule对应的所有order-->
+    <select id="get_schdule_orders" resultMap="result">
+        select o.numbers,o.id,o.dest,o.picking,o.status,o.address_id,d.volume,d.weight,d.ctn,d.ups,d.beizhu,s.email,d.category
+        from orders as o, subscriber_address as s,orders_details as d
+        where o.address_id=s.id and d.order_id=o.id
+        <if test="item_id!=0">
+            and  o.item_id=#{item_id}
+        </if>
+        <if test="numbers!=null">
+            and  o.numbers=#{numbers}
+        </if>
+    </select>
+
+    <!--//删除订单-->
+    <delete id="delete_by_id">
+        delete from ship_schdule where id=#{id}
+    </delete>
+
+    <!--    根据方法查询拼柜中的订单-->
+    <select id="get_items_method" resultMap="items">
+        select *
+        from ship_schdule as s
+        where s.method=#{method} and s.status=0 order by s.top desc , s.etd asc
+    </select>
+    
+<!--    置顶-->
+    <update id="update">
+        update ship_schdule
+        set top=#{top}
+        where number=#{number}
+    </update>
+<!--    置顶前确认-->
+    <select id="before_update" resultType="int">
+        select ship_schdule.top
+        from ship_schdule
+        where number=#{number}
+    </select>
+
+    <!--获取最新状态-->
+    <select id="get_status" resultMap="items">
+        select *
+        from ship_schdule as s
+        where s.number=#{number}
+    </select>
+    <!--更改最新状态-->
+    <update id="update_status">
+        update ship_schdule
+        set status=#{status} where number=#{number}
+    </update>
+
+    <!--当大订单结束时确认小订单已经完成-->
+    <update id="update_xiaoorders_status">
+        update orders set status=5 where item_id=(select id from fba.ship_schdule where number=#{number})
+    </update>
+
+    <!--当大订单结束时确认小订单服务中-->
+    <update id="update_xiaoorders_status_1">
+        update orders set status=3 where item_id=(select id from fba.ship_schdule where number=#{number})
+    </update>
+
+    <!--判断方法-->
+    <select id="get_method" resultMap="items">
+        select method,mudigang,etd,qiyungang
+        from ship_schdule
+        where id=#{item_id}
+    </select>
+
+    <!--    删除车行订单后更新数据-->
+    <update id="update_order_details">
+        update schdule_details set weight=weight+#{weight},volume=volume+#{volume}
+        where ship_id=(select item_id from orders where id=#{order_id})
+    </update>
+
+</mapper>

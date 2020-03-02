@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace命名空间，唯一标识。一般指定为自定义的接口文件，下面相当于这个接口的实现类 -->
+<mapper namespace="com.yiwutong.mapper.additionMapper">
+    <resultMap id="amount" type="com.yiwutong.entities.huodai.addition">
+        <id column="addition_id" property="addition_id"/>
+        <result column="category" property="category"/>
+        <result column="price" property="price"/>
+        <result column="user_id" property="user_id"/>
+    </resultMap>
+
+<!--    添加附加费-->
+    <insert id="add_price" parameterType="com.yiwutong.entities.huodai.addition">
+        insert into addition (category, price, user_id) value (#{category},#{price},#{user_id})
+    </insert>
+<!--    获取附加费-->
+     <select id="get_price" resultMap="amount">
+         select category,price,addition_id
+         from  addition
+         where  user_id=#{user_id}
+     </select>
+    <!--    获取附加费-->
+    <select id="get_price2" resultMap="amount">
+         select category,price,addition_id
+         from  addition
+         where  user_id=#{user_id}
+     </select>
+    <!--    获取附加费1-->
+    <select id="get_price_category" resultMap="amount">
+         select price
+         from  addition
+         where category=#{category} and user_id=#{user_id}
+     </select>
+
+<!--    删除附加费-->
+    <delete id="delete_price">
+        delete from addition
+        where addition_id=#{addition_id}
+    </delete>
+</mapper>

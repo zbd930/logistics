@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace命名空间，唯一标识。一般指定为自定义的接口文件，下面相当于这个接口的实现类 -->
+<mapper namespace="com.yiwutong.mapper.CompanyMapper">
+        <resultMap id="supplier" type="com.yiwutong.entities.company.supplier_company">
+            <id property="supplier_id" column="supplier_id"></id>
+            <result property="user_id" column="user_id"></result>
+            <result property="contact_name" column="contact_name"></result>
+            <result property="contact_phone" column="contact_phone"></result>
+            <result property="contact_mail" column="contact_mail"></result>
+            <result property="contact_address" column="contact_address"></result>
+            <result property="company_name" column="company_name"></result>
+            <result property="peichang" column="peichang"></result>
+            <association property="user" javaType="com.yiwutong.entities.User">
+                <id column="id" property="id"/>
+                <result column="username" property="username"/>
+                <result column="password" property="password"/>
+                <result column="type" property="type"/>
+            </association>
+        </resultMap>
+        <resultMap id="address" type="com.yiwutong.entities.address">
+            <id column="id" property="id"/>
+            <result column="openid" property="openid"/>
+            <result column="phone" property="phone"/>
+            <result column="address" property="address"/>
+            <result column="name" property="name"/>
+            <result column="email" property="email"/>
+        </resultMap>
+    <!--    获取所有发货人-->
+    <select id="get_all_subscriber" resultMap="address">
+        select *
+        from subscriber_address
+        limit #{page} , #{pageSize}
+    </select>
+
+
+<!--    获取所有供应商-->
+    <select id="get_all_supplier" resultMap="supplier">
+        select *
+        from supplier_address
+        limit #{page} , #{pageSize}
+    </select>
+
+<!--    修改赔偿条款-->
+    <update id="update_peichang">
+        update supplier_address
+        set peichang=#{peichang}
+        where supplier_id=#{supplier_id}
+    </update>
+
+<!--    新增供应商第一步-->
+    <insert id="add_user" useGeneratedKeys="true" keyProperty="id">
+        insert into user_info (username, password, type)
+        VALUE (#{username},#{password},#{type})
+    </insert>
+
+<!--    新增供应商第二步-->
+    <insert id="add_supplier" parameterType="com.yiwutong.entities.company.supplier_company">
+        insert into supplier_address (user_id,contact_name, contact_phone, contact_mail, contact_address, company_name, peichang)  value (#{user_id},#{contact_name},#{contact_phone},#{contact_mail},#{contact_address},#{company_name},#{peichang})
+    </insert>
+
+
+    <select id="get_company" resultMap="supplier">
+        select *
+        from supplier_address as s ,user_info as u
+        where u.id=s.user_id
+    </select>
+</mapper>

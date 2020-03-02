@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace命名空间，唯一标识。一般指定为自定义的接口文件，下面相当于这个接口的实现类 -->
+<mapper namespace="com.yiwutong.mapper.amountMapper">
+    <resultMap id="amount" type="com.yiwutong.entities.amount">
+        <id column="amount_id" property="id"/>
+        <result column="order_id" property="order_id"/>
+        <result column="paid" property="paid"/>
+        <result column="total" property="total"/>
+        <result column="item_id" property="item_id"/>
+        <result column="tax" property="tax"/>
+        <result column="customer" property="customer"/>
+        <result column="inspect" property="inspect"/>
+        <result column="openid" property="openid"/>
+        <result column="additional" property="additional"/>
+        <association property="order" javaType="com.yiwutong.entities.chehang.order">
+            <id column="id" property="id"/>
+            <result column="ctn" property="ctn"></result>
+            <result column="openid" property="openid"/>
+            <result column="weight" property="weight"/>
+            <result column="volume" property="volume"/>
+            <result column="numbers" property="numbers"></result>
+            <result column="item_id" property="item_id"/>
+            <result column="dest" property="dest"/>
+            <result column="address_id" property="address_id"/>
+            <result column="status" property="status"/>
+            <result column="beizhu" property="beizhu"/>
+            <result column="ups" property="ups"/>
+        </association>
+        <association property="ship" javaType="com.yiwutong.entities.huodai.Ship">
+            <id column="id" property="id"/>
+            <result column="qiyungang" property="qiyungang"/>
+            <result column="mudigang" property="mudigang"/>
+            <result column="etd" property="etd"/>
+            <result column="method" property="method"/>
+            <result column="eta" property="eta"/>
+            <result property="status" column="status"></result>
+            <result column="desc" property="desc"/>
+            <result column="shichang" property="shichang"/>
+        </association>
+    </resultMap>
+
+<!--//获取月份总金额-->
+    <select id="get_total_byhuodai" resultMap="amount">
+        select   sum(a.total) as total,sum(a.tax) as tax,sum(a.inspect) as inspect,sum(a.customer) as customer,sum(a.additional) as additional
+        from fba.amount as a,fba.ship_schdule as s
+        where a.item_id=s.id and s.etd>#{start_data} and #{end_data}>=s.etd and s.user_id=#{user_id}
+    </select>
+
+    <!--&lt;!&ndash;获取某月总订单与金额&ndash;&gt;-->
+    <select id="get_order_amount"  resultMap="amount">
+         select o.dest,o.numbers,o.dest,a.total,s.method,s.id,a.customer,a.tax,a.additional,a.inspect
+        from fba.orders as o, fba.amount as a,fba.ship_schdule as s
+        where o.id=a.order_id  and s.etd>#{start_data} and #{end_data}>=s.etd and s.id=a.item_id and s.user_id=#{user_id}
+    </select>
+    <!--&lt;!&ndash;获取某个订单的金额&ndash;&gt;-->
+    <select id="order_amount"  resultMap="amount">
+         select o.dest,o.numbers,o.dest,a.total,s.method,s.id,a.customer,a.tax,a.additional,a.inspect
+        from fba.orders as o, fba.amount as a,fba.ship_schdule as s
+        where o.id=a.order_id  and o.numbers=#{numbers} and s.id=a.item_id and s.user_id=#{user_id}
+    </select>
+
+
+    <!--更新杂费-->
+    <update id="updata_local" >
+        update amount set tax=#{tax},customer=#{customer},inspect=#{inspect} where order_id=#{order_id}
+    </update>
+
+    <!--更新附加费-->
+    <update id="update_additional">
+        update amount set additional=#{additional} where order_id=#{order_id}
+    </update>
+    <!--更新数据时更新价格-->
+    <update id="update_price">
+        update amount
+        set total=#{total}
+        where order_id=#{order_id}
+    </update>
+
+<!--    删除订单后更新价格-->
+    <delete id="updata_price_after_delete">
+        delete from amount
+        where order_id=#{order_id}
+    </delete>
+</mapper>

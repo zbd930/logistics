@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace命名空间，唯一标识。一般指定为自定义的接口文件，下面相当于这个接口的实现类 -->
+<mapper namespace="com.yiwutong.mapper.priceMapper">
+    <resultMap type="com.yiwutong.entities.huodai.price" id="my" >
+        <id property="id" column="id"></id>
+        <result column="west" property="west"/>
+        <result column="middle" property="middle"/>
+        <result column="east" property="east"/>
+        <result column="user_id" property="user_id"/>
+        <result column="valid_date_start" property="valid_date_start"/>
+        <result column="valid_start_end" property="valid_start_end"/>
+    </resultMap>
+    <!-- resultMap指定使用上面定义的结果集,查询使用关联查询，查询列要和上面的column对应 -->
+    <resultMap type="com.yiwutong.entities.huodai.price_haika" id="my1" >
+        <id property="id" column="id"></id>
+        <result column="mudigang" property="mudigang"/>
+        <result column="price" property="price"/>
+        <result column="qiyungang" property="qiyungang"/>
+        <result column="user_id" property="user_id"/>
+        <result column="valid_date_start" property="valid_date_start"/>
+        <result column="valid_date_end" property="valid_date_end"/>
+    </resultMap>
+    <resultMap id="price" type="com.yiwutong.entities.huodai.price_include">
+        <id property="id" column="id"></id>
+        <result column="valid_date_start" property="valid_date_start"/>
+        <result column="valid_date_end" property="valid_date_end"/>
+        <result column="area" property="area"/>
+        <result column="way" property="way"/>
+        <result column="user_id" property="user_id"/>
+        <result column="one" property="one"/>
+        <result column="three" property="three"/>
+        <result column="five" property="five"/>
+        <result column="ten" property="ten"/>
+    </resultMap>
+
+    <!--新增价格-->
+    <insert id="insert_price" parameterType="com.yiwutong.entities.huodai.price_include">
+        insert into price_include (area, valid_date_start, valid_date_end, user_id, way, one, three, five, ten) values (#{area},#{valid_date_start},#{valid_date_end},#{user_id},#{way},#{one},#{three},#{five},#{ten})
+    </insert>
+
+    <!--删除价格-->
+    <delete id="delete_price_haipai" >
+        delete
+        from price_include
+        where id=#{id}
+    </delete>
+    <!--美森价格-->
+    <select id="get_price_include" resultMap="price">
+                 select *
+                 from price_include
+                 where user_id=#{user_id} and way=#{way}
+                 <if test="area!=null">
+                     and area=#{area}
+                 </if>
+                <if test="start_data!=null">
+                    and #{start_data}>=valid_date_start and  valid_date_end>=#{start_data}
+                </if>
+             </select>
+    <!--海卡价格-->
+    <select id="get_price_haika" resultMap="my1">
+                 select *
+                 from price_noinclude
+                 where user_id=#{user_id}
+                <if test="mudigang!=null">
+                    and mudigang=#{mudigang}
+                </if>
+                <if test="qiyungang!=null">
+                    and qiyungang=#{qiyungang}
+                </if>
+                <if test="start_data!=null">
+                    and #{start_data}>=valid_date_start and  valid_date_end>=#{start_data}
+                </if>
+             </select>
+    <!--删除海卡价格-->
+    <delete id="delete_price_haika" >
+        delete
+        from price_noinclude
+        where id=#{id}
+    </delete>
+    <!--新增海卡价格-->
+    <insert id="insert_price_haika" >
+      insert into price_noinclude  (user_id,valid_date_start, valid_date_end,mudigang,price,qiyungang) values (#{user_id},#{valid_date_start},#{valid_date_end},#{mudigang},#{price},#{qiyungang})
+    </insert>
+    <!--更改价格前确认该时间段有无同类型的价格包税-->
+    <select id="check_ship_includetax" resultMap="price">
+        select valid_date_end,valid_date_start
+        from price_include
+        where area=#{area} and way=#{way} and user_id=#{user_id}
+    </select>
+    <!--更改价格前确认该时间段有无同类型的价格不包税-->
+    <select id="check_ship_noincludetax" resultMap="my1">
+        select valid_date_start,valid_date_end
+        from price_noinclude
+        where mudigang=#{mudigang} and qiyungang=#{qiyungang} and user_id=#{user_id}
+    </select>
+
+
+</mapper>
