@@ -138,35 +138,35 @@
 
 
                 <div style="position: relative;margin-left: 65% " >
+                        <font size="2">共<font color="red"><c:out value="${pagebean.allRows}"></c:out></font>条记录</font><br><br>
+                        <font size="2">共<font color="red"><c:out value="${pagebean.totalPage}"></c:out></font>页 </font>
+                        <font size="2">当前<font color="red"><c:out value="${pagebean.currentPage}"></c:out></font>页 </font>&nbsp;&nbsp;
+                        <c:choose>
+                            <c:when test="${pagebean.currentPage==1} ">
+                                首页&nbsp;&nbsp;&nbsp;上一页
+                            </c:when>
+                            <c:otherwise>
+                                <a href="<%=path%>/company/get.do?page=1">首页</a>
+                                &nbsp;&nbsp;&nbsp;
+                                <a href="<%=path%>/company/get.do?page=<c:out value="${pagebean.currentPage-1}" /> ">上一页</a>
+                            </c:otherwise>
+                        </c:choose>
+                        <c:choose>
+                            <c:when test="${pagebean.currentPage==pagebean.totalPage}">
+                                下一页&nbsp;&nbsp;&nbsp;尾页
+                            </c:when>
+                            <c:otherwise>
+                                <a href="<%=path%>/company/get.do?page=<c:out value="${pagebean.currentPage+1}" />">下一页</a>
+                                &nbsp;&nbsp;&nbsp;
+                                <a href="<%=path%>/company/get.do?page=${pagebean.totalPage}">尾页</a>
+                            </c:otherwise>
+                        </c:choose>
+                        <p style="display: inline-block;">
+                        <form action="<%=path%>/company/get.do?page" size="2" onclick="return validate(this)">
+                            跳转到&nbsp;<input type="text" name="page" style="width:40px;height: 20px;display: inline-block">&nbsp;页面
+                            <input type="submit" value="go" style="display: inline-block" onclick="return validate(this)">
+                        </form>
 
-                    <font size="2">共<font color="red"><c:out value="${pagebean.allRows}"></c:out></font>条记录</font><br><br>
-                    <font size="2">共<font color="red"><c:out value="${pagebean.totalPage}"></c:out></font>页 </font>
-                    <font size="2">当前<font color="red"><c:out value="${pagebean.currentPage}"></c:out></font>页 </font>&nbsp;&nbsp;
-                    <c:choose>
-                        <c:when test="${pagebean.currentPage==1} ">
-                            首页&nbsp;&nbsp;&nbsp;上一页
-                        </c:when>
-                        <c:otherwise>
-                            <a href="<%=path%>/company/get.do?page=1">首页</a>
-                            &nbsp;&nbsp;&nbsp;
-                            <a href="<%=path%>/company/get.do?page=<c:out value="${pagebean.currentPage-1}" /> ">上一页</a>
-                        </c:otherwise>
-                    </c:choose>
-                    <c:choose>
-                        <c:when test="${pagebean.currentPage==pagebean.totalPage}">
-                            下一页&nbsp;&nbsp;&nbsp;尾页
-                        </c:when>
-                        <c:otherwise>
-                            <a href="<%=path%>/company/get.do?page=<c:out value="${pagebean.currentPage+1}" />">下一页</a>
-                            &nbsp;&nbsp;&nbsp;
-                            <a href="<%=path%>/company/get.do?page=${pagebean.totalPage}">尾页</a>
-                        </c:otherwise>
-                    </c:choose>
-                    <p style="display: inline-block;">
-                    <form action="<%=path%>/company/get.do?page" size="2" onclick="return validate(this)">
-                        跳转到&nbsp;<input type="text" name="page" style="width:40px;height: 20px;display: inline-block">&nbsp;页面
-                        <input type="submit" value="go" style="display: inline-block" onclick="return validate(this)">
-                    </form>
                     </p>
                 </div>
             </div>

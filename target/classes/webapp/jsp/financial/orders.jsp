@@ -90,7 +90,7 @@
                     </c:forEach>
                 </table>
                 <div style="position: relative;margin-left: 65% " >
-
+                  <c:if test="${pagebean.allRows!='0'}">
                     <font size="2">共<font color="red"><c:out value="${pagebean.allRows}"></c:out></font>条记录</font><br><br>
                     <font size="2">共<font color="red"><c:out value="${pagebean.totalPage}"></c:out></font>页 </font>
                     <font size="2">当前<font color="red"><c:out value="${pagebean.currentPage}"></c:out></font>页 </font>&nbsp;&nbsp;
@@ -121,6 +121,7 @@
                         <input type="submit" value="go" style="display: inline-block" onclick="return validate(this)">
                     </form>
                     </p>
+                  </c:if>
                 </div>
             </div>
 

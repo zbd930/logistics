@@ -30,6 +30,7 @@
         <result column="area" property="area"/>
         <result column="way" property="way"/>
         <result column="user_id" property="user_id"/>
+        <result column="country" property="user_id"/>
         <result column="one" property="one"/>
         <result column="three" property="three"/>
         <result column="five" property="five"/>
@@ -58,6 +59,9 @@
                 <if test="start_data!=null">
                     and #{start_data}>=valid_date_start and  valid_date_end>=#{start_data}
                 </if>
+                <if test="country!=null">
+                    and country=#{country}
+                </if>
              </select>
     <!--海卡价格-->
     <select id="get_price_haika" resultMap="my1">
@@ -72,6 +76,9 @@
                 </if>
                 <if test="start_data!=null">
                     and #{start_data}>=valid_date_start and  valid_date_end>=#{start_data}
+                </if>
+                <if test="country!=null">
+                    and country=#{country}
                 </if>
              </select>
     <!--删除海卡价格-->
