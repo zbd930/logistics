@@ -129,7 +129,6 @@
                         <input name="contact_address" placeholder="提货地址（重要）">
                         <input name="company_name" placeholder="公司名字">
                         <textarea name="peichang" cols="1" rows="3" style="resize:none" placeholder="赔偿">
-
                         </textarea>
                         <button style="display: block;margin-left:45%">提交</button>
                     </form>
