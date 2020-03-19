@@ -16,11 +16,7 @@
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expires" content="0">
-    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-    <meta http-equiv="description" content="This is my page">
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="<%=path%>/static/all.css">
-    <link rel="stylesheet" type="text/css" href="<%=path%>/static/iconfont.css">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <style>
         .input {

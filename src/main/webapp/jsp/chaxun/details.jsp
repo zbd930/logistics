@@ -18,33 +18,6 @@
     <script src="https://cdn.staticfile.org/foundation/5.5.3/js/foundation.min.js"></script>
     <script src="https://cdn.staticfile.org/foundation/5.5.3/js/vendor/modernizr.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <style>
-        .black_overlay{
-            display: none;
-            position: absolute;
-            top: 0%;
-            left: 0%;
-            width: 100%;
-            height: 100%;
-            background-color: black;
-            z-index:1001;
-            -moz-opacity: 0.8;
-            opacity:.80;
-            filter: alpha(opacity=88);
-        }
-        .white_content {
-            display: none;
-            position: absolute;
-            top: 25%;
-            left: 25%;
-            width: 45%;
-            height: 55%;
-            padding: 20px;
-            background-color: white;
-            z-index:1002;
-            overflow: auto;
-        }
-    </style>
     <script>
         function jump() {
             window.location.href="<%=path%>/huodai/jump3.do";

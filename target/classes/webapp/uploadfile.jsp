@@ -16,7 +16,7 @@
 </head>
 
 <body>
-<form id="form1" action="https://dwb.lynncain.cn/H5/up_file.php" target="frame1" method="post" enctype="multipart/form-data">
+<form id="form1" action="" target="frame1" method="post" enctype="multipart/form-data">
     <input type="file" name="file">
     <input type="button" value="上传" οnclick="upload()">
 </form>

@@ -2,17 +2,6 @@
 <%@ page import="com.yiwutong.entities.User" %>
 <%String path = request.getContextPath();%>
 <%@ page isELIgnored="false" %>
-
-<%--
-  Created by IntelliJ IDEA.
-<%String path = request.getContextPath();%>
-<%--
-  Created by IntelliJ IDEA.
-  User: jemmy
-  Date: 2019/8/13
-  Time: 21:25
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%User user= (User) session.getAttribute("user");%>
 <%--
