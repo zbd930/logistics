@@ -7,44 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4bbce41e-0e1b-4d1d-ab0a-81e1b94860c1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/chaxun/details.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/chaxun/details.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/chaxun/track_mission.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/chaxun/track_mission.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/chaxun/user_order.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/chaxun/user_order.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/manage/hudoai.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/manage/hudoai.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/selection/top.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/selection/top.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/all.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/all.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/background.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/iconfont.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/jquery-3.3.1.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/yiwutong.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/webapp/jsp/chaxun/details.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/webapp/jsp/chaxun/details.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/webapp/jsp/chaxun/track_mission.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/webapp/jsp/chaxun/track_mission.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/webapp/jsp/chaxun/user_order.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/webapp/jsp/chaxun/user_order.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/webapp/jsp/manage/hudoai.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/webapp/jsp/manage/hudoai.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/webapp/jsp/selection/top.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/webapp/jsp/selection/top.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/webapp/static/all.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/webapp/static/all.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/webapp/uploadfile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/webapp/uploadfile.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/logistics.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/logistics.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/logistics/WEB-INF/classes/webapp/jsp/chaxun/details.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/logistics/WEB-INF/classes/webapp/jsp/chaxun/details.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/logistics/WEB-INF/classes/webapp/jsp/chaxun/track_mission.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/logistics/WEB-INF/classes/webapp/jsp/chaxun/track_mission.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/logistics/WEB-INF/classes/webapp/jsp/chaxun/user_order.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/logistics/WEB-INF/classes/webapp/jsp/chaxun/user_order.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/logistics/WEB-INF/classes/webapp/jsp/manage/hudoai.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/logistics/WEB-INF/classes/webapp/jsp/manage/hudoai.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/logistics/WEB-INF/classes/webapp/jsp/selection/top.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/logistics/WEB-INF/classes/webapp/jsp/selection/top.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/logistics/WEB-INF/classes/webapp/static/all.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/logistics/WEB-INF/classes/webapp/static/all.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/logistics/WEB-INF/classes/webapp/uploadfile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/logistics/WEB-INF/classes/webapp/uploadfile.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/logistics/WEB-INF/lib/commons-logging-1.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/logistics/jsp/chaxun/details.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/logistics/jsp/chaxun/details.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/logistics/jsp/chaxun/track_mission.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/logistics/jsp/chaxun/track_mission.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/logistics/jsp/chaxun/user_order.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/logistics/jsp/chaxun/user_order.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/logistics/jsp/manage/hudoai.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/logistics/jsp/manage/hudoai.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/logistics/jsp/selection/top.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/logistics/jsp/selection/top.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/logistics/static/all.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/logistics/static/all.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/logistics/uploadfile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/logistics/uploadfile.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,6 +86,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
@@ -248,11 +213,6 @@
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
                 <item name="Tomcat Server" type="7427dc5b:ServiceModel$ServiceGroupNode" />
               </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="Tomcat Server" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="Finished" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              </path>
             </expand>
             <select />
           </treeState>
@@ -285,6 +245,10 @@
       <workItem from="1584520948610" duration="1350000" />
       <workItem from="1584581335981" duration="13000" />
       <workItem from="1584581877503" duration="3089000" />
+      <workItem from="1584605666093" duration="666000" />
+      <workItem from="1584665640462" duration="765000" />
+      <workItem from="1584667954905" duration="88000" />
+      <workItem from="1584670835503" duration="72000" />
     </task>
     <servers />
   </component>
@@ -296,58 +260,58 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="172" y="31" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1584583395537" />
-    <state width="1058" height="174" key="GridCell.Tab.0.bottom" timestamp="1584584974979">
+    <state width="1058" height="106" key="GridCell.Tab.0.bottom" timestamp="1584670838383">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1058" height="174" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1584584974979" />
-    <state width="1058" height="174" key="GridCell.Tab.0.center" timestamp="1584584974979">
+    <state width="1058" height="106" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1584670838383" />
+    <state width="1058" height="106" key="GridCell.Tab.0.center" timestamp="1584670838382">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1058" height="174" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1584584974979" />
-    <state width="1058" height="174" key="GridCell.Tab.0.left" timestamp="1584584974978">
+    <state width="1058" height="106" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1584670838382" />
+    <state width="1058" height="106" key="GridCell.Tab.0.left" timestamp="1584670838382">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1058" height="174" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1584584974978" />
-    <state width="1058" height="174" key="GridCell.Tab.0.right" timestamp="1584584974979">
+    <state width="1058" height="106" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1584670838382" />
+    <state width="1058" height="106" key="GridCell.Tab.0.right" timestamp="1584670838382">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1058" height="174" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1584584974979" />
-    <state width="1058" height="174" key="GridCell.Tab.1.bottom" timestamp="1584584974979">
+    <state width="1058" height="106" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1584670838382" />
+    <state width="1058" height="174" key="GridCell.Tab.1.bottom" timestamp="1584609284916">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1058" height="174" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1584584974979" />
-    <state width="1058" height="174" key="GridCell.Tab.1.center" timestamp="1584584974979">
+    <state width="1058" height="174" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1584609284916" />
+    <state width="1058" height="174" key="GridCell.Tab.1.center" timestamp="1584609284916">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1058" height="174" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1584584974979" />
-    <state width="1058" height="174" key="GridCell.Tab.1.left" timestamp="1584584974979">
+    <state width="1058" height="174" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1584609284916" />
+    <state width="1058" height="174" key="GridCell.Tab.1.left" timestamp="1584609284916">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1058" height="174" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1584584974979" />
-    <state width="1058" height="174" key="GridCell.Tab.1.right" timestamp="1584584974979">
+    <state width="1058" height="174" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1584609284916" />
+    <state width="1058" height="174" key="GridCell.Tab.1.right" timestamp="1584609284916">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1058" height="174" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1584584974979" />
-    <state width="1058" height="174" key="GridCell.Tab.2.bottom" timestamp="1584584974980">
+    <state width="1058" height="174" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1584609284916" />
+    <state width="1058" height="174" key="GridCell.Tab.2.bottom" timestamp="1584609284916">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1058" height="174" key="GridCell.Tab.2.bottom/0.0.1366.728@0.0.1366.728" timestamp="1584584974980" />
-    <state width="1058" height="174" key="GridCell.Tab.2.center" timestamp="1584584974980">
+    <state width="1058" height="174" key="GridCell.Tab.2.bottom/0.0.1366.728@0.0.1366.728" timestamp="1584609284916" />
+    <state width="1058" height="174" key="GridCell.Tab.2.center" timestamp="1584609284916">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1058" height="174" key="GridCell.Tab.2.center/0.0.1366.728@0.0.1366.728" timestamp="1584584974980" />
-    <state width="1058" height="174" key="GridCell.Tab.2.left" timestamp="1584584974979">
+    <state width="1058" height="174" key="GridCell.Tab.2.center/0.0.1366.728@0.0.1366.728" timestamp="1584609284916" />
+    <state width="1058" height="174" key="GridCell.Tab.2.left" timestamp="1584609284916">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1058" height="174" key="GridCell.Tab.2.left/0.0.1366.728@0.0.1366.728" timestamp="1584584974979" />
-    <state width="1058" height="174" key="GridCell.Tab.2.right" timestamp="1584584974980">
+    <state width="1058" height="174" key="GridCell.Tab.2.left/0.0.1366.728@0.0.1366.728" timestamp="1584609284916" />
+    <state width="1058" height="174" key="GridCell.Tab.2.right" timestamp="1584609284916">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1058" height="174" key="GridCell.Tab.2.right/0.0.1366.728@0.0.1366.728" timestamp="1584584974980" />
-    <state x="375" y="190" key="com.intellij.ide.util.TipDialog" timestamp="1584581334758">
+    <state width="1058" height="174" key="GridCell.Tab.2.right/0.0.1366.728@0.0.1366.728" timestamp="1584609284916" />
+    <state x="375" y="190" key="com.intellij.ide.util.TipDialog" timestamp="1584670835553">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="375" y="190" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1584581334758" />
+    <state x="375" y="190" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1584670835553" />
   </component>
   <component name="masterDetails">
     <states>
